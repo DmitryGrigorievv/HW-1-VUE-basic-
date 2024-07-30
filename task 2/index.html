@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue.js Example</title>
+</head>
+<body>
+    <div id="app">
+        <h1>{{ hello }}</h1>
+        <button @click="reverseButton">{{ reverseBtn }}</button>
+        <button @click="addLi">Добавить новый элемент списка</button>
+
+        <ul>
+            <li v-for="(item, index) in list" :key="index" @click="removeLi(index)">
+                {{ item }}
+            </li>
+        </ul>
+    </div>
+    <script src="https://unpkg.com/vue@3.2.31/dist/vue.global.prod.js"></script>
+    <script>
+        const app = {
+            data() {
+                return {
+                    hello: "Домашнее задание 1",
+                    reverseBtn: "Перевернуть",
+                    list: ["Новый элемент списка"]
+                };
+            },
+            methods: {
+                reverseButton() {
+                    this.reverseBtn = this.reverseBtn.split('').reverse().join('');
+                },
+                addLi() {
+                    this.list.push("Новый элемент списка");
+                },
+                removeLi(index) {
+                    this.list.splice(index, 1);
+                }
+            }
+        };
+        Vue.createApp(app).mount("#app");
+    </script>
+</body>
+</html>
